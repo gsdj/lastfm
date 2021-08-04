@@ -1,3 +1,60 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 6px 14px;
+  height: 100%;
+  width: 240px;
+  background: #2e2b4e;
+}
+
+.sidebar .logo_content .logo {
+  color: #fff;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+} 
+
+.logo_content .logo {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.sidebar ul {
+  padding: 0;
+}
+
+.sidebar ul li {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin: 0 5px;
+  list-style: none;
+  line-height: 50px;
+  text-align: center;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.sidebar ul li a span {
+  text-align: center;
+}
+
+.sidebar ul li a:hover {
+  color: #11101d;
+  background: #fff;
+}
+
 .App {
   text-align: center;
 }
@@ -22,6 +79,16 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-list {
+  
+  list-style-type: none;
+}
+
+.App-list li {
+  display: inline-block;
+  margin: 0px 10px;
 }
 
 .App-link {

@@ -1,24 +1,59 @@
 const axios = require('axios').default;
+const nconf = require('nconf');
+//const art = require('../models/Artist');
+//const gret = require('../models/gret.js');
 
-const apiKey = "5aca9160a4a90186a4129362a81146e2";
-const uri = `http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=10&api_key=${apiKey}&format=json`;
-
-
-exports.getTopArtists = function(req,res) {
+/* exports.getTopArtists = function(req,res) {
+    let pageN = req.query.page;
+    let perPage = 9;
+    let totalPages = 5;
+    let totalCount = perPage*totalPages;
     axios.get('http://ws.audioscrobbler.com/2.0/',{
-/*         proxy: {
+        proxy: {
             host: 'proxy1.bank',
             port: 3128,
-       }, */
+       },
         params: {
             method: 'chart.gettopartists',
-            limit: '10',
-            api_key: apiKey,
+            limit: perPage,
+            api_key: nconf.get('apiKey:lastfm'),
             format: 'json',
+            page: pageN,
         }
-    }).then(function (resp) {
-        res.send(resp.data);
+    }).then(function (resp) {    
+        resp.data.artists["@attr"].totalPages = totalPages.toString();  
+        resp.data.artists["@attr"].total = totalCount.toString();  
+        res.send(resp.data); 
     }).catch(function (error) {
         console.log(error);
     });
+    
+} */
+
+exports.getTopArtists = function(req,res) {
+    //gret;
+    let pageN = req.query.page;
+    let perPage = 9;
+    let totalPages = 5;
+    let totalCount = perPage*totalPages;
+    axios.get('http://ws.audioscrobbler.com/2.0/',{
+        proxy: {
+            host: 'proxy1.bank',
+            port: 3128,
+       },
+        params: {
+            method: 'chart.gettopartists',
+            limit: perPage,
+            api_key: nconf.get('apiKey:lastfm'),
+            format: 'json',
+            page: pageN,
+        }
+    }).then(function (resp) {    
+        resp.data.artists["@attr"].totalPages = totalPages.toString();  
+        resp.data.artists["@attr"].total = totalCount.toString();  
+        res.send(resp.data.artists.artist); 
+    }).catch(function (error) {
+        console.log(error);
+    });
+    
 }
