@@ -31,16 +31,15 @@ const nconf = require('nconf');
 } */
 
 exports.getTopArtists = function(req,res) {
-    //gret;
     let pageN = req.query.page;
     let perPage = 9;
     let totalPages = 5;
     let totalCount = perPage*totalPages;
     axios.get('http://ws.audioscrobbler.com/2.0/',{
-        proxy: {
+/*         proxy: {
             host: 'proxy1.bank',
             port: 3128,
-       },
+       }, */
         params: {
             method: 'chart.gettopartists',
             limit: perPage,
@@ -51,7 +50,7 @@ exports.getTopArtists = function(req,res) {
     }).then(function (resp) {    
         resp.data.artists["@attr"].totalPages = totalPages.toString();  
         resp.data.artists["@attr"].total = totalCount.toString();  
-        res.send(resp.data.artists.artist); 
+        res.send(resp.data.artists); 
     }).catch(function (error) {
         console.log(error);
     });
