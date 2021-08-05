@@ -4,5 +4,9 @@
   },
   "server": {
     "port": 3001
+  },
+  "proxy": {
+    "host": "proxy1.bank",
+    "port": 3128
   }
 }

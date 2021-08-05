@@ -1,8 +1,9 @@
 const express = require("express");
 const nconf = require('nconf');
 const cors = require('cors');
-const TopArtistController = require("./controllers/TopArtistController");
-const TopTrackController = require("./controllers/TopTrackController");
+const ArtistController = require("./controllers/ArtistController.js");
+const TrackController = require("./controllers/TrackController.js");
+const AlbumController = require("./controllers/AlmubController.js");
 
 nconf.argv().env().file({file: './config.json'});
 const app = express();
@@ -11,23 +12,22 @@ const jsonParser = express.json();
 app.use(express.static(__dirname + "/public"));
 app.use(cors()); 
 
-const TopArtistRouter = express.Router();
-const TopTrackRouter = express.Router();
+const ArtistRouter = express.Router();
+const TrackRouter = express.Router();
+const AlbumRouter = express.Router();
 
-/* TodoListRouter.get("/", TodoListController.getList);
-TodoListRouter.get("/:id", TodoListController.getTodo);
-TodoListRouter.post("/create", jsonParser, TodoListController.addTodo);
-TodoListRouter.delete("/:id", TodoListController.delTodo);
-TodoListRouter.put("/update", jsonParser, TodoListController.updateTodo); */
+ArtistRouter.get("/topChart", ArtistController.getTopArtists);
+ArtistRouter.get("/:artistName", ArtistController.getArtist);
 
-TopArtistRouter.get("/", TopArtistController.getTopArtists);
-TopTrackRouter.get("/", TopTrackController.getTracks);
-//TopTrackRouter.get("/", TopTrackController.getTracks2);
-/* TopTrackRouter.get("/", TopTrackController.grett);
-TopTrackRouter.get("/tracks", TopTrackController.getTracks); */
+TrackRouter.get("/topChart", TrackController.getTopTracks);
+TrackRouter.get("/:trackName/artist/:artistName", TrackController.getTrack);
 
-app.use("/api/TopArtists", TopArtistRouter);
-app.use("/api/TopTracks", TopTrackRouter);
+//AlbumRouter.get("/topChart", TrackController.getTopTracks);
+AlbumRouter.get("/:albumName/artist/:artistName", AlbumController.getAlbum);
+
+app.use("/api/artists", ArtistRouter);
+app.use("/api/tracks", TrackRouter);
+app.use("/api/album", AlbumRouter);
 
 
 app.listen(nconf.get('server:port'), function() {
