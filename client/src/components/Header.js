@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 import '../App.css';
 
-function Sidebar(props) {
+function Header(props) {
     return(
-        <div className="sidebar">
+        <div className="header">
             <div className="logo_content">
                 <div className="logo">
                     <div className="logo_name">lastFm</div>
@@ -12,7 +12,7 @@ function Sidebar(props) {
             </div>
             <ul className="nav_list">
                 <li>
-                    <NavLink activeClassName="active_link" className="link" to="/" >
+                    <NavLink activeClassName="active_link" className="link" to="/Home" >
                         <span>Главная</span>
                     </NavLink>
                 </li>
@@ -27,19 +27,19 @@ function Sidebar(props) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink activeClassName="active_link" className="link" to="/#1" >
-                        <span>#######</span>
+                    <NavLink activeClassName="active_link" className="link" to="/Albums" >
+                        <span>Альбомы</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink activeClassName="active_link" className="link" to="/#2" >
+                    <NavLink activeClassName="active_link" className="link" to="/2" >
                         <span>#######</span>
                     </NavLink>
                 </li>
             </ul>
+            <div className="search-wrapper">search</div>
         </div>
     );
 }
 
-export default Sidebar;
-
+export default Header;
